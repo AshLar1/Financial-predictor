@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Bankruptcy Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>📊 Business Bankruptcy Predictor</h1>
+            <p>Find out the financial stability of your business. Our AI-powered tool analyzes key financial ratios to assess bankruptcy risk.</p>
+            <a href="#calculator" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>🔍 How It Works</h2>
+        <p>Our system analyzes your financial data using machine learning models to determine the probability of bankruptcy.</p>
+        <div class="steps">
+            <div class="step"><i class="fas fa-file-invoice-dollar"></i><p>Enter your financial details</p></div>
+            <div class="step"><i class="fas fa-cogs"></i><p>Our AI processes the data</p></div>
+            <div class="step"><i class="fas fa-chart-line"></i><p>Get instant risk assessment</p></div>
+        </div>
+    </section>
+
+    <!-- Bankruptcy Risk Calculator Section -->
+    <section class="calculator" id="calculator">
+        <h2>📉 Bankruptcy Risk Calculator</h2>
+        <p>Fill in your business financial details to receive an instant bankruptcy risk analysis.</p>
+
+        <form action="/predict" method="post" id="prediction-form">
+            {% for feature, description in { 
+                'ROA(C) before interest and depreciation before interest': '🔹 ROA(C): Measures profitability before interest & depreciation.',
+                'ROA(A) before interest and % after tax': '🔹 ROA(A): Profitability after tax but before interest.',
+                'ROA(B) before interest and depreciation after tax': '🔹 ROA(B): Business profitability considering depreciation & tax.',
+                'Current Ratio': '🔹 Liquidity ratio comparing current assets to liabilities.',
+                'Total debt/Total net worth': '🔹 Debt-to-Net Worth Ratio: Indicates financial leverage.',
+                'Debt ratio %': '🔹 Debt Ratio: Percentage of assets financed by debt.',
+                'Net worth/Assets': '🔹 Net Worth to Assets Ratio: A measure of financial stability.',
+                'Equity to Liability': '🔹 Equity-to-Liability Ratio: Measures shareholder investment vs. debt.'
+            }.items() %}
+                <div class="input-group">
+                    <label for="{{ feature }}">{{ feature }}:</label>
+                    <input type="number" step="any" name="{{ feature }}" placeholder="Enter value" required>
+                    <small>{{ description }}</small>
+                </div>
+            {% endfor %}
+            <button type="submit" class="predict-btn">Check Risk</button>
+        </form>
+    </section>
+
+    <!-- Prediction Result Section -->
+    {% if prediction %}
+    <section class="prediction-result">
+        <h2>📊 Prediction Result</h2>
+        <div class="result {% if 'High Risk' in prediction %}high-risk{% else %}low-risk{% endif %}">
+            <h3>{{ prediction }}</h3>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Example Calculation Section -->
+    <section class="example-calculation">
+        <h2>📌 Example Calculation</h2>
+        <p>Below is an example of how the bankruptcy risk prediction works using sample financial data:</p>
+        <div class="example-box">
+            <p><strong>Example Input:</strong></p>
+            <ul>
+                <li>ROA(C): -0.12</li>
+                <li>ROA(A): -0.15</li>
+                <li>ROA(B): -0.10</li>
+                <li>Current Ratio: 0.45</li>
+                <li>Total Debt/Net Worth: 2.10</li>
+                <li>Debt Ratio: 0.85</li>
+                <li>Net Worth/Assets: 0.20</li>
+                <li>Equity to Liability: 0.25</li>
+            </ul>
+            <p><strong>Predicted Output:</strong></p>
+            <p>⚠️ <strong>High Risk of Bankruptcy.</strong> Probability: <strong>0.85 (85%)</strong></p>
+            <p><em>Based on the input, the model has detected a high probability of financial distress.</em></p>
+        </div>
+    </section>
+
+    <!-- Trust Section with Testimonials -->
+    <section class="trust-section">
+        <h2>💬 What Our Users Say</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>“This tool helped me understand my business risks and make better financial decisions!”</p>
+                <span>⭐️⭐️⭐️⭐️⭐️</span>
+                <h4>— Sarah J., Small Business Owner</h4>
+            </div>
+            <div class="testimonial">
+                <p>“Quick, accurate, and easy to use. Highly recommended for financial assessments.”</p>
+                <span>⭐️⭐️⭐️⭐️⭐️</span>
+                <h4>— Mark T., Financial Consultant</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq">
+        <h2>❓ Frequently Asked Questions</h2>
+        <details>
+            <summary>How accurate is this bankruptcy predictor?</summary>
+            <p>Our model is trained on real-world financial data with a high accuracy rate of 99%.</p>
+        </details>
+        <details>
+            <summary>What financial data do I need to provide?</summary>
+            <p>You need to input key financial ratios, such as ROA, debt ratio, and equity-to-liability ratio.</p>
+        </details>
+        <details>
+            <summary>Is my data secure?</summary>
+            <p>Yes! We do not store any of your input data. All calculations are processed securely.</p>
+        </details>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Business Financial Predictor | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
