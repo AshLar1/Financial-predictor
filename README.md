@@ -26,9 +26,13 @@ This web app predicts the financial stability of a business using AI. It takes i
 
 ## 📁 File Structure
 ├── main.py # Flask app logic
+
 ├── static/style.css # CSS styling
+
 ├── templates/index.html # Frontend UI
+
 ├── stacked_model_60.pkl # Trained ML model
+
 ├── standard_scaler.pkl # Scaler used during training
 
 ---
