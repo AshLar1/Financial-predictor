@@ -2,7 +2,7 @@
 
 This web app predicts the financial stability of a business using AI. It takes in financial ratios and outputs a prediction of whether a business is likely to go bankrupt.
 
-🔗 **Live App (via Replit):** [Launch the App](https://replit.com/@ashleylartey/Financial-predictor)
+🔗 **Live App (via Replit):** [Launch the App](https://financial-predictor-ashleylartey.replit.app)
 
 ---
 
